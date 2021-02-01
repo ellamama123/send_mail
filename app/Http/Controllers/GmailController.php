@@ -12,12 +12,17 @@ class GmailController extends Controller
     }
     public function sendmail(Request $request)
     {
+        $this->validate($request,[
+            'name' => 'required',
+            'email' => 'required|email',
+            'content' => 'required'
+        ]);
         $details = [
-            'title' => $request->name,
-            'body' => $request->content
+            'name' => $request->name,
+            'content' => $request->content
         ];
         Mail::to($request->email)->send(new \App\Mail\MyTestMail($details));
-        return view('mail.test');
+        return back()->with('success', 'Cảm ơn đã gửi tin');
         
     }
 }
