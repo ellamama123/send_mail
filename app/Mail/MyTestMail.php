@@ -30,6 +30,6 @@ class MyTestMail extends Mailable
      */
     public function build()
     {
-        return $this->from('nguyendinhchienpc@gmail.com')->subject('New Customer Equiry')->view('mail.success')->with('data', $this->data);
+        return $this->from('nguyendinhchienpc@gmail.com')->subject($this->data['title'])->view('mail.success')->with('data', $this->data);
     }
 }

@@ -15,11 +15,13 @@ class GmailController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'email' => 'required|email',
-            'content' => 'required'
+            'content' => 'required',
+            'title' => 'required'
         ]);
         $details = [
             'name' => $request->name,
-            'content' => $request->content
+            'content' => $request->content,
+            'title' => $request->title
         ];
         Mail::to($request->email)->send(new \App\Mail\MyTestMail($details));
         return back()->with('success', 'Cảm ơn đã gửi tin');
